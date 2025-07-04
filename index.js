@@ -12,33 +12,37 @@ let arr = [
     ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr']
 ];
 let currentMatch = JSON.parse(JSON.stringify(arr))
-for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
-        let cell = document.createElement('div')
-        if ((i + j) % 2 == 0) {
-            cell.classList.add('white')
-        }
-        else {
-            cell.classList.add('black')
-        }
 
-        let pieceCode = currentMatch[i][j];
-        if (pieceCode !== '') {
-            let img = document.createElement('img');
-            img.src = `images/${pieceCode}.png`;
-
-            img.classList.add('piece');
-            cell.appendChild(img);
+function createChessboard() {
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            let cell = document.createElement('div')
+            if ((i + j) % 2 == 0) {
+                cell.classList.add('white')
+            }
+            else {
+                cell.classList.add('black')
+            }
+    
+            let pieceCode = currentMatch[i][j];
+            if (pieceCode !== '') {
+                let img = document.createElement('img');
+                img.src = `images/${pieceCode}.png`;
+    
+                img.classList.add('piece');
+                cell.appendChild(img);
+            }
+            cell.dataset.row = i
+            cell.dataset.col = j
+            cell.addEventListener("click", handleClick)
+            cell.classList.add('cell')
+            container.appendChild(cell)
+            clearHighlight()
         }
-        cell.dataset.row = i
-        cell.dataset.col = j
-        cell.addEventListener("click", handleClick)
-        cell.classList.add('cell')
-        container.appendChild(cell)
-        clearHighlight()
     }
 }
 
+createChessboard()
 
 
 function handleClick(e) {
@@ -48,14 +52,20 @@ function handleClick(e) {
     let cell = e.currentTarget;
     let row = parseInt(cell.dataset.row);
     let col = parseInt(cell.dataset.col);
-    if( cellList[row*8 + col].classList.contains('highlight')){
-        movePiece(row, col)
-    }
-    clearHighlight()
-    if (currentMatch[row][col] != '') {
+    if (currentMatch[row][col] == '') {
         clickPieceCol = col
         clickPieceRow = row
+        console.log(row,col);
+        
     }
+    if( cellList[row*8 + col].classList.contains('highlight')){
+        movePiece(row, col, clickPieceRow, clickPieceCol)
+        console.log('1362ergaed');
+        
+    }
+    clearHighlight()
+
+    
 
     if (currentMatch[row][col] === 'bp' || currentMatch[row][col] === 'wp') {
         showPawnMoves(row, col)
@@ -71,7 +81,6 @@ function handleClick(e) {
         showKingMoves(row, col)
     }
 
-    console.log(cellList[row*8 + col].classList); 
 
 
 } function isBound(row, col) {
@@ -181,24 +190,23 @@ function handleClick(e) {
 } function showKingMoves(row, col) {
 
 }
-function movePiece(row, col) {
-    console.log(clickPieceRow , clickPieceCol,currentMatch[row][col])
+function movePiece(row, col, clickPieceRow, clickPieceCol) {
+    console.log(row,col)
+    console.log(clickPieceRow, clickPieceCol,currentMatch[row][col])
     if (currentMatch[row][col] == ''){
             currentMatch[row][col] = currentMatch[clickPieceRow][clickPieceCol]
             currentMatch[clickPieceRow][clickPieceCol] = ''
-            console.log(clickPieceRow , clickPieceCol,n)
+            container.innerHTML = "";
+            createChessboard()
+            console.log(clickPieceRow , clickPieceCol,'43dfghytf')
     }
-}
-
-
-function highlightCell(row, col) {
+}function highlightCell(row, col) {
     let index = row * 8 + col
     let cells = document.querySelectorAll('.cell')
     if (cells[index]) {
         cells[index].classList.add('highlight')
     }
-}
-function clearHighlight() {
+}function clearHighlight() {
     document.querySelectorAll('.cell.highlight').forEach(cell => {
         cell.classList.remove('highlight');
     });
