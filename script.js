@@ -188,7 +188,15 @@ function handleClick(e) {
         }
     }
 } function showKingMoves(row, col) {
-
+        if (currentMatch[r][col] === '') {
+            highlightCell(r, col);
+        }if (currentMatch[r][col] === '') {
+            highlightCell(r, col);
+        }if (currentMatch[row][c] === '') {
+            highlightCell(row, c);
+        }if (currentMatch[row][c] === '') {
+            highlightCell(row, c);
+        }
 }
 function movePiece(row, col, clickPieceRow, clickPieceCol) {
     console.log(row,col)
