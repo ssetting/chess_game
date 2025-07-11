@@ -2,14 +2,14 @@ let container = document.getElementById('bordContainer')
 let clickPieceCol = null
 let clickPieceRow = null
 let arr = [
-    ['br', 'bn', 'bb', 'bq', 'bk', 'bb', 'bn', 'br'],
+    ['br', 'bn', 'bb', 'bq', '', 'bb', 'bn', 'br'],
     ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
+    ['', '', '', '', '', 'bk', '', ''],
     ['', '', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', '', ''],
+    ['', '', '', 'wk', '', '', '', ''],
     ['', '', '', '', '', '', '', ''],
     ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
-    ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr']
+    ['wr', 'wn', 'wb', 'wq', '', 'wb', 'wn', 'wr']
 ];
 let currentMatch = JSON.parse(JSON.stringify(arr))
 
