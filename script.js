@@ -2,14 +2,14 @@ let container = document.getElementById('bordContainer')
 let clickPieceCol = null
 let clickPieceRow = null
 let arr = [
-    ['br', 'bn', 'bb', 'bq', '', 'bb', 'bn', 'br'],
+    ['br', 'bn', 'bb', 'bq', 'bk', 'bb', 'bn', 'br'],
     ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
-    ['', '', '', '', '', 'bk', '', ''],
     ['', '', '', '', '', '', '', ''],
-    ['', '', '', 'wk', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', ''],
     ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
-    ['wr', 'wn', 'wb', 'wq', '', 'wb', 'wn', 'wr']
+    ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr']
 ];
 let currentMatch = JSON.parse(JSON.stringify(arr))
 
@@ -59,9 +59,7 @@ function handleClick(e) {
         
     }
     if( cellList[row*8 + col].classList.contains('highlight')){
-        movePiece(row, col, clickPieceRow, clickPieceCol)
-        console.log('1362ergaed');
-        
+        movePiece(row, col, clickPieceRow, clickPieceCol)     
     }
     clearHighlight()
 
@@ -188,15 +186,7 @@ function handleClick(e) {
         }
     }
 } function showKingMoves(row, col) {
-        if (currentMatch[r][col] === '') {
-            highlightCell(r, col);
-        }if (currentMatch[r][col] === '') {
-            highlightCell(r, col);
-        }if (currentMatch[row][c] === '') {
-            highlightCell(row, c);
-        }if (currentMatch[row][c] === '') {
-            highlightCell(row, c);
-        }
+
 }
 function movePiece(row, col, clickPieceRow, clickPieceCol) {
     console.log(row,col)
